@@ -11,24 +11,23 @@ class CustomerController extends Controller
     {
         return Customer::all();
     }
-    public function show($id)
+    public function show(Customer $customer)
     {
-        return Customer::find($id);
+        return $customer;
     }
     public function store(Request $request)
     {
-        return Customer::create($request->all());
+        $customer = Customer::create($request->all());
+        return response()->json($customer, 201);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
         $customer->update($request->all());
-        return $customer;
+        return response()->json($customer, 200);
     }
-    public function delete(Request $request, $id)
+    public function delete(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
         $customer->delete();
-        return 204;
+        return response()->json(null, 204);
     }
 }
