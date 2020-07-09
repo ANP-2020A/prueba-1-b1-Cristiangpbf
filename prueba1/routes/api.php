@@ -30,3 +30,11 @@ Route::post('customers', 'CustomerController@store');
 Route::put('customers/{customer}', 'CustomerController@update');
 Route::delete('customers/{customer}', 'CustomerController@delete');
 
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('articles/{article}', 'ArticleController@show');
+    Route::post('articles', 'ArticleController@store');
+    Route::put('articles/{article}', 'ArticleController@update');
+    Route::delete('articles/{article}', 'ArticleController@delete');
+
+});
