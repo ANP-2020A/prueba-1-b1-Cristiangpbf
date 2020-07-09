@@ -11,24 +11,23 @@ class ProductController extends Controller
     {
         return Product::all();
     }
-    public function show($id)
+    public function show(Product $product)
     {
-        return Product::find($id);
+        return $product;
     }
     public function store(Request $request)
     {
-        return Product::create($request->all());
+        $product = Product::create($request->all());
+        return response()->json($product, 201);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        $product = Product::findOrFail($id);
         $product->update($request->all());
-        return $product;
+        return response()->json($product, 200);
     }
-    public function delete(Request $request, $id)
+    public function delete(Product $product)
     {
-        $product = Product::findOrFail($id);
         $product->delete();
-        return 204;
+        return response()->json(null, 204);
     }
 }

@@ -15,18 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 Route::get('products', 'ProductController@index');
-Route::get('products/{id}', 'ProductController@show');
+Route::get('products/{product}', 'ProductController@show');
 Route::post('products', 'ProductController@store');
-Route::put('products/{id}', 'ProductController@update');
-Route::delete('products/{id}', 'ProductController@delete');
+Route::put('products/{product}', 'ProductController@update');
+Route::delete('products/{product}', 'ProductController@delete');
 
 Route::get('customers', 'CustomerController@index');
-Route::get('customers/{id}', 'CustomerController@show');
+Route::get('customers/{customer}', 'CustomerController@show');
 Route::post('customers', 'CustomerController@store');
-Route::put('customers/{id}', 'CustomerController@update');
-Route::delete('customers/{id}', 'CustomerController@delete');
+Route::put('customers/{customer}', 'CustomerController@update');
+Route::delete('customers/{customer}', 'CustomerController@delete');
 
